@@ -1,0 +1,304 @@
+<?php
+
+#echo "<hr>pictures <br />This is <b>" . $mod . "</b> content within " . gfn() . " page.";
+
+$mod = $_GET['mod'];
+$view = $_GET['view'];
+$album = $_POST['album'];
+
+
+if ($mod == "pictures"){
+	if ($view == "church"){
+		#echo "<p> now is content of <b>". $mod . "&" . $view ."</b>";
+		$pic_root_path = "bin/pictures/$view/";  // include the trailing slash here
+	} else if ($view == "babysitting"){
+		#echo "<p> now is content of <b>". $mod . "&" . $view ."</b>";
+		$pic_root_path = "bin/pictures/$view/";  // include the trailing slash here
+	} else if ($view == NULL){
+		#echo "<p> view is not being selected, but by default to display <b>church'es</b> pictures";
+		$pic_root_path = "bin/pictures/church/";  // include the trailing slash here
+	} else if ($view == "all"){
+		#echo "<p> now is content of <b>". $mod . "&" . $view ."</b>";
+		$pic_root_path = "bin/pictures/";  // include the trailing slash here
+	}
+}
+
+echo "<br /><center><a href=\"?mod=pictures&view=church\">教會照片</a>&nbsp;&nbsp;|\n"
+	."&nbsp;&nbsp;<a href=\"?mod=pictures&view=babysitting\">安親班照片</a>&nbsp;&nbsp;|\n"
+	."&nbsp;&nbsp;<a href=\"?mod=pictures&view=all\">所有照片</a> -> NOT YET COMPLETE\n</center><br />";
+
+?>
+<!--  test drop down
+<form method="POST" action="<?php $_SERVER["PHP_SELF"];?>">
+	<select name="album" size="1" onChange="location = this.options[this.selectedIndex].value;">
+		<option value="">Select an album...</option>
+		<option value="church">Church</option>
+		<option value="babysitting">Daycare</option>
+		<option value="all">All</option>
+	</select>
+	<input type="submit" name="submit_button" value="Go">
+</form>
+Album: <?php print $_POST['album']; ?>
+-->
+<?
+
+define("CHECK", FALSE);  // Set to FALSE to disable checks
+define("TNAME", Chinese);  // language of folder title, not case sensitive, Chinese or English
+define("BYDATE", FALSE);  // Set TRUE to display pictures by folder dates, or set FALSE to display by folder names
+
+$folders = array();  // store folders' paths
+$pictures = array();  // store pictures
+$dir_by_name = array();  // store picture directories by name
+$dir_by_date = array();  // sort & store directories by date
+$display = array();
+$fcount = 0;  // count number of folders in $pic_root_path
+
+
+// read all directories within a given directory, while removing the . and ..
+$ppath = dir($pic_root_path);  // assigns the path to $ppath
+while(($file = $ppath->read()) !== false) {
+	#$upper = ucwords($file);
+	if(is_dir($ppath->path.$file) == true && $file != '.' && $file != '..') {
+		$entry = $pic_root_path.$file;
+		$folders[] = $entry;
+		if(CHECK==TRUE){				echo "<p><strong><a href='$entry'>$file</a></strong></p>";			}
+		#array_push($folders, $entry);
+	}
+}
+$ppath->close();
+
+
+// sort directory by date
+function LoadFiles($dir){
+	$Files = array();
+	$It =  opendir($dir);
+	if (! $It)
+		die("Cannot list files for " . $dir);
+	while ($Filename = readdir($It)){
+		if ($Filename == '.' || $Filename == '..')
+			continue;
+		$LastModified = filemtime($dir.$Filename);
+		$Files[] = array($dir.$Filename, $LastModified);
+	}
+	closedir($It);
+	return $Files;
+}
+
+
+function DateCmp($a, $b){
+	return ($a[1] > $b[1]) ? -1 : 1;  // sort from recent to old (a-z)
+	#return ($a[1] < $b[1]) ? -1 : 1;  // sort from old to recent (z-a)
+}
+
+
+function SortByDate(&$Files){
+	usort($Files, 'DateCmp');
+}
+
+
+// determine to display pictures either by date or by name
+$fcount = count($folders);  // count # of picture directories
+if(BYDATE == TRUE){
+	$Files = LoadFiles($pic_root_path);
+	SortByDate($Files);
+	while (list($k,$v)=each($Files)){  // store directory path into $dir_by_date by date
+		$dir_by_date[] = $v[0];
+	}
+	$display = $dir_by_date;
+	if (CHECK == TRUE){		print "<ul>";		while (list($k,$v)=each($Files)){			?><li> - <?=$v[0]?> <?=date('Y/m/d i',$v[1])?></li><?		}		print "</ul>";		echo"<pre>";		print_r($Files);		echo"</pre>";	}
+} else if (BYDATE !== TRUE) {
+	#sort($folders);  // sort folders by name (a-z) lowest to highest
+	rsort($folders);  // sort folders by name (z-a) highest to lowest
+	$display = $folders;
+	$dir_by_name = $display;  // saved for future use
+}
+
+
+for ($i = 0; $i < $fcount; $i++){
+	$pictures[$i] = pic_retriever($display[$i]);
+}
+
+function last_dir_name($dir){  // get last directory
+	if(substr($dir, -1) == "/"){
+		$dir = substr($dir, 0, -1);  // rip the trailing slash if there's one
+	}
+	$last = substr(strrchr($dir, "/"), 1);  // get everything after last slash
+	return $last;
+}
+
+
+/********************************** Just Folder Names **********************************
+$just_folder_names = array();
+for ($i = 0; $i < $fcount; $i++){
+	$just_folder_names[] = last_dir_name($display[$i]);
+}
+print "<p><b>folder names:</b><pre>";
+print_r($just_folder_names);
+print "</pre>";
+/********************************** Just Folder Names **********************************/
+
+
+// walk through folders and return picture names as an array
+function pic_retriever($dir){
+	// read all jpg file in the current directory
+	if ($dh = opendir($dir)) {
+		$files = array();
+		while (($file = readdir($dh)) !== false) {
+			if (substr($file, strlen($file) - 4) == '.jpg') {
+				array_push($files, $file);
+			}
+		}
+		closedir($dh);
+	}
+	return $files;
+}
+
+
+// display folder title from title.txt
+function folder_name($fetch, $language){
+	$language = ucfirst($language);  // capitalize first letter
+	$tfile = $fetch."/title.txt";  // store correct title.txt directory
+	if(file_exists($tfile)){
+		$fh = fopen($tfile,"rb");
+		$fharr = array();
+		$line = 0;
+		while(!feof($fh)){
+			$fharr[$line] = rtrim(fgets($fh, 1024));
+			$line++;
+		}
+		fclose($fh);
+		// determine which language to return
+		if ($language == "Chinese"){
+			return $fharr[1];
+		} else if ($language == "English"){
+			return $fharr[0];
+		}
+	} else {
+		return "<i>Untitled</i>";
+	}
+}
+
+
+// generate anchor table
+echo "<center><div class=\"pixNavLinks\">";
+for ($a = 0; $a < $fcount; $a++){
+	echo "<span><a href=\"#$folders[$a]\">".folder_name($display[$a],TNAME)."</a></span><span>|</span>";
+}
+echo "</div></center><br />";
+
+// generate picture gallery
+for ($p = 0; $p < $fcount; $p++){
+	echo "<center><a name=\"$folders[$p]\"><div class=\"pixHeader\"><span>".folder_name($display[$p],TNAME)."</span></div>";
+	echo "<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"pixContent\"><tr><td>";
+	// check if folder is empty
+	if (array_values($pictures[$p]) == NULL){
+		echo "<font color=red><i>Pictures are not available in this content.</i></font>\n";
+	} else {
+		foreach ($pictures[$p] as $file){
+			echo "<a href=\"$display[$p]/$file\" alt\"$folders[$p]\" /><img src=\"$display[$p]/tn/$file\"></a>\n";
+		}
+	}
+	echo "</td></tr><tr align=\"right\"><td><a href=\"#\" class=\"pixBackToTop\">back to top</a></td></tr></table>\n"
+		."<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" class=\"pixTableBottom\">\n"
+		."<tr><td class=\"tbl\"></td><td class=\"tbm\" nowrap=\"nowrap\">&nbsp;</td><td class=\"tbr\"></td></tr>\n</table></center>\n";
+}
+
+if (CHECK == TRUE){	echo "<b>folders</b><pre>";	print_r($folders);	echo "</pre><b>directories sort by name (a-z)</b><pre>";	print_r($dir_by_name);	echo "</pre><b>directories sort by date recent to old (a-z)</b><pre>";	print_r($dir_by_date);	echo "</pre><b>pictures</b><pre>";	print_r($pictures);	echo "</pre>";}
+
+?>
+
+
+
+
+
+
+
+<?
+/**********************************test************************************/
+function read_dir($dir) {
+   $array = array();
+   $d = dir($dir);
+   while (false !== ($entry = $d->read())) {
+       if($entry!='.' && $entry!='..') {
+           $entry = $dir."/".$entry;
+           if(is_dir($entry)) {
+               $array[] = $entry;
+               $array = array_merge($array, read_dir($entry));
+           } else {
+               $array[] = $entry;
+           }
+       }
+   }
+   $d->close();
+   return $array;
+}
+
+function getImagesList($path) {
+    $ctr = 0;
+    if ( $img_dir = @opendir($path) ) {
+        while ( false !== ($img_file = readdir($img_dir)) ) {
+            // add checks for other image file types here, if you like
+            if ( preg_match("/(\.gif|\.jpg)$/", $img_file) ) {
+                $images[$ctr] = $img_file;
+                $ctr++;
+            }
+        }
+        closedir($img_dir);
+        return $images;
+    } else {
+        return false;
+    }
+}
+/**********************************test************************************/
+if(!$zzz==NULL){
+echo "<p><b>Sort Directory and SubDirectory by Date</b></p>";
+function LoadFiles2($dir,$filter="")
+{
+ $Files = array();
+ $It =  opendir($dir);
+ if (! $It)
+  die('Cannot list files for ' . $dir);
+ while ($Filename = readdir($It))
+ {
+ if ($Filename != '.' && $Filename != '..'  )
+ {
+  if(is_dir($dir . $Filename))
+   {
+   $Files = array_merge($Files, LoadFiles2($dir . $Filename.'/'));
+   }
+ else 
+  if ($filter=="" || preg_match( $filter, $Filename ) ) 
+   {
+   $LastModified = filemtime($dir . $Filename);
+   $Files[] = array($dir .$Filename, $LastModified);
+   }
+    
+  else 
+   continue;
+   
+ }
+}
+  return $Files;
+}
+function DateCmp2($a, $b)
+{
+  return  strnatcasecmp($a[1] , $b[1]) ;
+} 
+
+function SortByDate(&$Files)
+{
+  usort($Files, 'DateCmp2');
+} 
+
+$Files = LoadFiles2("pictures/tn/");
+SortByDate($Files);
+reset($Files);
+
+print "<ul>";
+while (list($k,$v) =each($Files))
+ {
+ ?><li> - <?=$v[0]?> <?=date('Ymd h:i',$v[1])?></li><?
+ }
+print "</ul>";
+}
+?>

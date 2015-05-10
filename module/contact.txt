@@ -1,0 +1,204 @@
+<?php
+
+#echo "<hr> contact <br />This is <b>" . $mod . "</b> content within " . gfn() . " page.";
+
+$portrait = $picture_path;
+
+?>
+<br />
+<table  border="1" id="table1" cellpadding="0" style="border-collapse: collapse" bordercolor="#D6E7F8" align="center" class="contact">
+	<tr>
+		<!------------ Rev. Cliff Hsu ------------>
+		<td><img src="<?print $portrait?>cliff_hsu.jpg"></td>
+		<td><div>
+			<span class="cname">許曉夫<font size="4">牧師</font></span><br />
+			<span class="size2">Rev. Cliff Hsu</span><br />
+			<span class="size2">cliff@fccc.net</span>
+		</div></td>
+		<!------------ Rev. Cliff Hsu ------------>
+		<td><img src="<?print $portrait?>wendy_mai.jpg"></td>
+		<td><div>
+			<span class="cname">麥競文<font size="4">牧師</font></span><br />
+			<span class="size2">Rev. Wendy mai</span><br />
+			<span class="size2">wendy@fccc.net</span>
+		</div></td>
+	</tr>
+	<tr><td height="26"></tr></td>
+	<tr>
+		<!------------ Presbyter Shipin Liu ------------>
+		<td><img src="<?print $portrait?>shipin_liu.jpg"></td>
+		<td><div>
+			<span class="cname">劉士彬<font size="4">長老</font></span><br />
+			<span class="size2">Presbyter Shipin Liu</span><br />
+			<span class="size2">&nbsp;</span>
+		</div></td>
+		<!------------ Presbyter Abraham Tong ------------>
+		<td><img src="<?print $portrait?>abraham_tong.jpg"></td>
+		<td><div>
+			<span class="cname">佟　深<font size="4">長老</font></span><br />
+			<span class="size2">Presbyter Abraham Tong</span><br />
+			<span class="size2">abraham@fccc.net</span>
+		</div></td>
+	</tr>
+	<tr><td height="26"></tr></td>
+	<tr>
+		<!------------ Deacon Walter Lee ------------>
+		<td><img src="<?print $portrait?>walter_lee.jpg"></td>
+		<td><div>
+			<span class="cname">李其樺<font size="4">執事</font></span><br />
+			<span class="size2">Deacon Walter Lee</span><br />
+			<span class="size2">walter@fccc.net</span>
+		</div></td>
+		<!------------ Presbyter Michael Lin ------------>
+		<td><img src="<?print $portrait?>michael_lin.jpg"></td>
+		<td><div>
+			<span class="cname">林　磊<font size="4">長老</font></span><br />
+			<span class="size2">Presbyter Michael Lin</span><br />
+			<span class="size2">michael@fccc.net</span>
+		</div></td>
+	</tr>
+	<tr><td height="26"></tr></td>
+	<tr>
+		<!------------ Deacon Qi Chen ------------>
+		<td><img src="<?print $portrait?>qi_chen.jpg"></td>
+		<td><div>
+			<span class="cname">陳　琪<font size="4">執事</font></span><br />
+			<span class="size2">Deacon Qi Chen</span><br />
+			<span class="size2">qi@fccc.net</span>
+		</div></td>
+		<!------------ Deacon Yanmei Lu ------------>
+		<td><img src="<?print $portrait?>yanmei_lu.jpg"></td>
+		<td><div>
+			<span class="cname">呂艷梅<font size="4">執事</font></span><br />
+			<span class="size2">Deacon Yanmei Lu</span><br />
+			<span class="size2">yanmei@fccc.net</span>
+		</div></td>
+	</tr>
+	<tr><td height="26"></tr></td>
+	<tr>
+		<!------------ Deacon Shenyu Chiao ------------>
+		<td><img src="<?print $portrait?>shenyu_chiao.jpg"></td>
+		<td><div>
+			<span class="cname">喬勝玉<font size="4">執事</font></span><br />
+			<span class="size2">Deacon Shenyu Chiao</span><br />
+			<span class="size2">shenyu@fccc.net</span>
+		</div></td>
+		<!------------ Deacon Jacky Lee ------------>
+		<td><img src="<?print $portrait?>jacky_l.jpg"></td>
+		<td><div>
+			<span class="cname">李其霖<font size="4">執事</font></span><br />
+			<span class="size2">Deacon Jacky Lee</span><br />
+			<span class="size2">jacky@fccc.net</span>
+		</div></td>
+	</tr>
+</table>
+
+
+<?php
+$ipi = getenv("REMOTE_ADDR");
+$httprefi = getenv ("HTTP_REFERER");
+$httpagenti = getenv ("HTTP_USER_AGENT");
+?>
+
+<!--
+
+<form method="post" action="?mod=contact">
+<table cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td>
+			<input type="hidden" name="ip" value="<?php echo $ipi?>" />
+			<input type="hidden" name="httpref" value="<?php echo $httprefi?>" />
+			<input type="hidden" name="httpagent" value="<?php echo $httpagenti?>" />
+		</td>
+	</tr>
+	<tr>
+		<td>Your Name:</td>
+		<td><input type="text" name="visitor" size="35" /></td>
+	</tr>
+	<tr>
+		<td>Your E-mail:</td>
+		<td><input type="text" name="visitormail" size="35" /></td>
+	</tr>
+	<tr>
+		<td>Attention:</td>
+		<td>
+			<select name="attn" size="1">
+				<option value=" Sales n Billing ">Sales n Billing </option>
+				<option value=" General Support ">General Support </option>
+				<option value=" Technical Support ">Technical Support </option>
+				<option value=" Webmaster ">Webmaster </option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>Message:</td>
+		<td><textarea name="message" rows="4" cols="40"></textarea></td>
+	</tr>
+	<tr>
+		<td><input type="submit" value="Send Mail" /><input type="reset" value="Reset"></td>
+	</tr>
+</table>
+</form>
+
+-->
+
+
+<?php
+/*
+$ip = $_POST['ip']; 
+$httpref = $_POST['httpref']; 
+$httpagent = $_POST['httpagent']; 
+$visitor = $_POST['visitor']; 
+$visitormail = $_POST['visitormail']; 
+$message = $_POST['message'];
+$attn = $_POST['attn'];
+
+if (eregi('http:', $message)) {
+#	die ("<font color='red'>Message field is empty.</font>");
+}
+if(!$visitormail == "" && (!strstr($visitormail,"@") || !strstr($visitormail,"."))) {
+	echo "<font color='red'>Please enter a valid e-mail address.<br /> \n"
+		."Feedback was NOT submitted.<br /> \n";
+#	die ("Go back!!</font>");
+}
+if(empty($visitor) || empty($visitormail) || empty($message )) {
+	echo "<font color='red'>Please fill in all fields, thank you.</font><br /> \n";
+#	die ("Use back!!");
+}
+
+$todayis = date("l, F j, Y, g:i a") ;
+
+$attn = $attn ; 
+$subject = $attn; 
+
+$message = stripcslashes($message); 
+
+$message = "
+	$todayis [EST] \n
+	Attention: $attn \n
+	Message: $message \n 
+	From: $visitor ($visitormail)\n
+	Additional Info : IP = $ip \n
+	Browser Info: $httpagent \n
+	Referral : $httpref \n
+";
+
+$from = "From: $visitormail\r\n";
+
+
+mail("daycare.jacky@live.com", $subject, $message, $from);
+
+$sent = mail($to, $subject, $message, $headers);
+echo $sent?"<h1> Mail Sent</h1>":"<h1> Mail not SENT</h1>";
+
+
+function is_valid_email($email) {
+  return preg_match('#^[a-z0-9.!\#$%&\'*+-/=?^_`{|}~]+@([0-9.]+|([^\s]+\.+[a-z]{2,6}))$#si', $email);
+}
+
+if (!is_valid_email($email)) {
+  echo 'Sorry, invalid email';
+  exit;
+}
+*/
+?>

@@ -1,0 +1,24 @@
+/*	
+	2003 Foster City Chinese Church
+	www.fccc.net CSS
+
+*/
+
+
+p.copyright {
+	font: 0.85em/1.35em Verdana, Arial;
+	font-size: 1em;
+	font-weight: normal;
+	text-align: left;
+ 	line-height: 1.45em;
+}
+img.RNO_81x87 {
+	float: left;
+	width: 81;
+	height: 87;
+	border: 0;
+	margin: 1.25em 10px 0 2px;
+	padding: 0;
+}
+	
+/******************************************************************************************/

@@ -1,0 +1,229 @@
+<html>
+<head>
+<title>FCCC Online Bible</title>
+<script language="javascript" src="bible.js"></script>
+<script language="javascript" src="bible_positions.js"></script>
+<script language="javascript" src="codes.js"></script>
+
+
+<script Language="JavaScript">
+<!--
+
+function setachap() {
+  setchap(Reading, document.Reading.na.selectedIndex, document.Reading.chap.selectedIndex);
+  setchap(Reading2, document.Reading2.na.selectedIndex+39, document.Reading2.chap.selectedIndex);
+}
+
+
+function setchap(f, index, s1) {
+        var i,j,k,txt;
+	var cnum=new Array(50,40,27,36,34,24,21,4,31,24,22,25,29,36,10,13,10,42,150,31,12,8,66,52,5,48,12,14,3,9,1,4,7,3,3,3,2,14,4, 28,16,24,21,28,16,16,13,6,6,4,4,5,3,6,4,3,1,13,5,5,3,5,1,1,1,22);
+	i=cnum[index];
+	var currentchapters = f.chap.options.length;
+	
+	if((i == 150) && (currentchapters < 150))
+	  for(j = 1; j <= 150;j++) {
+	    txt = "第 " + j + " 篇";
+	    f.chap.options[j-1] = new Option(txt, j);	
+	  }
+	else if((i < 150) && (currentchapters == 150)) {
+	  for(j = 1; j <= i; j++) {
+	    txt = "第 " + j + " 章";
+	    f.chap.options[j-1] = new Option(txt, j);
+	  }
+	  for(j = 150;j > i;j--)
+	    f.chap.options[j-1] = null;
+	}
+	else if (i > currentchapters)
+	  for(j = currentchapters; j <= i; j++) {
+	    txt = "第 " + j + " 章";
+	    f.chap.options[j-1] = new Option(txt, j);
+	  }
+	else if (i < currentchapters)
+	  for(j = currentchapters; j > i; j--)
+	    f.chap.options[j-1] = null;
+
+	
+	f.chap.options[0].selected = s1;
+
+}
+//-->
+</script>
+
+
+<meta http-equiv="Content-Type" CONTENT="text/html; charset=big5">
+</head>
+<body onload="setachap()" text="#000050" link="#00ff00" alink="#ffffff" vlink="#0000ff">
+
+<center>
+
+<table><tr>
+<td valign="top"><a onMouseOut="this.style.textDecoration='none'" onMouseOver="this.style.cursor='hand';this.style.textDecoration='underline'" onClick="readchapter(nowbook,--nowchapter); return false;"><font color="#0000FF">前一章</font></a></td>
+<td valign="top">
+  <FORM NAME="search" onsubmit="validate(document.search.query.value); return false;">
+  <INPUT type="text" name="query" SIZE="26">
+  <input type="submit" name="submit1" value="查詢">
+  </FORM>
+</td>
+<td valign="top"><a onMouseOut="this.style.textDecoration='none'" onMouseOver="this.style.cursor='hand';this.style.textDecoration='underline'" onClick="readchapter(nowbook,++nowchapter); return false;"><font color="#0000FF">後一章</font></a></td>
+</tr></table>
+
+<table cellspacing="0" cellpadding="0" border="0"><tr><td>
+<form method="POST" name="Reading" onsubmit="readchapter(document.Reading.na.selectedIndex, document.Reading.chap.selectedIndex); return false;">
+		<SELECT NAME="na" OnChange="setchap(Reading, this.selectedIndex, 1)">
+		<OPTION  VALUE="0" SELECTED>創世記
+  		<OPTION  VALUE="1">出埃及記
+  		<OPTION  VALUE="2">利未記
+  		<OPTION  VALUE="3">民數記
+  		<OPTION  VALUE="4">申命記
+  		<OPTION  VALUE="5">約書亞記
+  		<OPTION  VALUE="6">士師記
+  		<OPTION  VALUE="7">路得記
+  		<OPTION  VALUE="8">撒母耳記上
+  		<OPTION  VALUE="9">撒母耳記下
+  		<OPTION  VALUE="10">列王紀上
+  		<OPTION  VALUE="11">列王紀下
+  		<OPTION  VALUE="12">歷代志上
+  		<OPTION  VALUE="13">歷代志下
+  		<OPTION  VALUE="14">以斯拉記
+  		<OPTION  VALUE="15">尼希米記
+  		<OPTION  VALUE="16">以斯帖記
+  		<OPTION  VALUE="17">約伯記
+  		<OPTION  VALUE="18">詩篇
+  		<OPTION  VALUE="19">箴言
+  		<OPTION  VALUE="20">傳道書
+  		<OPTION  VALUE="21">雅歌
+  		<OPTION  VALUE="22">以賽亞書
+  		<OPTION  VALUE="23">耶利米書
+  		<OPTION  VALUE="24">耶利米哀歌
+  		<OPTION  VALUE="25">以西結書
+  		<OPTION  VALUE="26">但以理書
+  		<OPTION  VALUE="27">何西阿書
+  		<OPTION  VALUE="28">約珥書
+  		<OPTION  VALUE="29">阿摩司書
+  		<OPTION  VALUE="30">俄巴底亞書
+  		<OPTION  VALUE="31">約拿書
+  		<OPTION  VALUE="32">彌迦書
+  		<OPTION  VALUE="33">那鴻書
+  		<OPTION  VALUE="34">哈巴谷書
+  		<OPTION  VALUE="35">西番雅書
+  		<OPTION  VALUE="36">哈該書
+  		<OPTION  VALUE="37">撒迦利亞書
+  		<OPTION  VALUE="38">瑪拉基書</SELECT> <SELECT NAME="chap" >
+		<OPTION  VALUE="001" SELECTED>第 1 章
+		<OPTION  VALUE="002">第 2 章
+		<OPTION  VALUE="003">第 3 章
+		<OPTION  VALUE="004">第 4 章
+		<OPTION  VALUE="005">第 5 章
+		<OPTION  VALUE="006">第 6 章
+		<OPTION  VALUE="007">第 7 章
+		<OPTION  VALUE="008">第 8 章
+		<OPTION  VALUE="009">第 9 章
+		<OPTION  VALUE="010">第 10 章
+		<OPTION  VALUE="011">第 11 章
+		<OPTION  VALUE="012">第 12 章
+		<OPTION  VALUE="013">第 13 章
+		<OPTION  VALUE="014">第 14 章
+		<OPTION  VALUE="015">第 15 章
+		<OPTION  VALUE="016">第 16 章
+		<OPTION  VALUE="017">第 17 章
+		<OPTION  VALUE="018">第 18 章
+		<OPTION  VALUE="019">第 19 章
+		<OPTION  VALUE="020">第 20 章
+		<OPTION  VALUE="021">第 21 章
+		<OPTION  VALUE="022">第 22 章
+		<OPTION  VALUE="023">第 23 章
+		<OPTION  VALUE="024">第 24 章
+		<OPTION  VALUE="025">第 25 章
+		<OPTION  VALUE="026">第 26 章
+		<OPTION  VALUE="027">第 27 章
+		<OPTION  VALUE="028">第 28 章
+		<OPTION  VALUE="029">第 29 章
+		<OPTION  VALUE="030">第 30 章
+		<OPTION  VALUE="031">第 31 章
+		<OPTION  VALUE="032">第 32 章
+		<OPTION  VALUE="033">第 33 章
+		<OPTION  VALUE="034">第 34 章
+		<OPTION  VALUE="035">第 35 章
+		<OPTION  VALUE="036">第 36 章
+		<OPTION  VALUE="037">第 37 章
+		<OPTION  VALUE="038">第 38 章
+		<OPTION  VALUE="039">第 39 章
+		<OPTION  VALUE="040">第 40 章
+		<OPTION  VALUE="041">第 41 章
+		<OPTION  VALUE="042">第 42 章
+		<OPTION  VALUE="043">第 43 章
+		<OPTION  VALUE="044">第 44 章
+		<OPTION  VALUE="045">第 45 章
+		<OPTION  VALUE="046">第 46 章
+		<OPTION  VALUE="047">第 47 章
+		<OPTION  VALUE="048">第 48 章
+		<OPTION  VALUE="049">第 49 章
+		<OPTION  VALUE="050">第 50 章</SELECT>
+		<input type="submit" name="submit1" value="閱讀">
+		</form>
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		<td>
+		<form method="POST" name="Reading2" onsubmit="readchapter(document.Reading2.na.selectedIndex+39, document.Reading2.chap.selectedIndex); return false;">
+		<SELECT NAME="na" OnChange="setchap(Reading2, this.selectedIndex+39, 1)">
+		<OPTION  VALUE="39" checked>馬太福音
+  		<OPTION  VALUE="40">馬可福音
+  		<OPTION  VALUE="41">路加福音
+  		<OPTION  VALUE="42">約翰福音
+  		<OPTION  VALUE="43">使徒行傳
+  		<OPTION  VALUE="44">羅馬書
+  		<OPTION  VALUE="45">哥林多前書
+  		<OPTION  VALUE="46">哥林多後書
+  		<OPTION  VALUE="47">加拉太書
+  		<OPTION  VALUE="48">以弗所書
+  		<OPTION  VALUE="49">腓利比書
+  		<OPTION  VALUE="50">歌羅西書
+  		<OPTION  VALUE="51">帖撒羅尼迦前書
+  		<OPTION  VALUE="52">帖撒羅尼迦後書
+  		<OPTION  VALUE="53">提摩太前書
+  		<OPTION  VALUE="54">提摩太後書
+  		<OPTION  VALUE="55">提多書
+  		<OPTION  VALUE="56">腓利門書
+  		<OPTION  VALUE="57">希伯來書
+  		<OPTION  VALUE="58">雅各書
+  		<OPTION  VALUE="59">彼得前書
+  		<OPTION  VALUE="60">彼得後書
+  		<OPTION  VALUE="61">約翰壹書
+  		<OPTION  VALUE="62">約翰貳書
+  		<OPTION  VALUE="63">約翰參書
+  		<OPTION  VALUE="64">猶大書
+  		<OPTION  VALUE="65">啟示錄</SELECT> <SELECT NAME="chap" >
+		<OPTION  VALUE="001" SELECTED>第 1 章
+		<OPTION  VALUE="002">第 2 章
+		<OPTION  VALUE="003">第 3 章
+		<OPTION  VALUE="004">第 4 章
+		<OPTION  VALUE="005">第 5 章
+		<OPTION  VALUE="006">第 6 章
+		<OPTION  VALUE="007">第 7 章
+		<OPTION  VALUE="008">第 8 章
+		<OPTION  VALUE="009">第 9 章
+		<OPTION  VALUE="010">第 10 章
+		<OPTION  VALUE="011">第 11 章
+		<OPTION  VALUE="012">第 12 章
+		<OPTION  VALUE="013">第 13 章
+		<OPTION  VALUE="014">第 14 章
+		<OPTION  VALUE="015">第 15 章
+		<OPTION  VALUE="016">第 16 章
+		<OPTION  VALUE="017">第 17 章
+		<OPTION  VALUE="018">第 18 章
+		<OPTION  VALUE="019">第 19 章
+		<OPTION  VALUE="020">第 20 章
+		<OPTION  VALUE="021">第 21 章
+		<OPTION  VALUE="022">第 22 章
+		<OPTION  VALUE="023">第 23 章
+		<OPTION  VALUE="024">第 24 章
+		<OPTION  VALUE="025">第 25 章
+		<OPTION  VALUE="026">第 26 章
+		<OPTION  VALUE="027">第 27 章
+		<OPTION  VALUE="028">第 28 章</SELECT>
+		<input type="submit" name="submit1" value="閱讀">
+</form></td></tr></table>
+</center>
+</body>
+</html>

@@ -1,0 +1,152 @@
+/*	
+	2008 Foster City Chinese Church
+	www.fccc.net CSS
+*/
+
+li {
+	font-size: 160%;
+}
+body {
+	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color: #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;
+	padding: 0;
+	margin: 0;
+	height: auto;
+}
+body, td {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+}
+h1 {
+	font-size: 16px;
+}
+h2 {
+	font-size: 14px;
+}
+@media all {	/* excludes ns4 and other older browsers */
+	h1,	h2, p { margin:0 0 .8em 0 }
+}
+/* not in use when XP style index.php exists
+td {vertical-align:top;}
+*/
+.v-line {
+	border-width: 0 1px 0 0;
+	border-style: solid;
+	border-color: #06a;
+	line-height: 0;
+	height: 100%;
+}
+.container {
+	/*border-width: 0 0 0 1px;
+	border-style: solid;
+	border-color: #06a;*/
+	width: 100%;
+	float: center;
+	padding: 10px 10px 0 10px;
+	margin: 0;
+	white-space: nowrap;
+}
+.treenav {
+	/*border-width: 0 1px 0 0;
+	border-style: solid;
+	border-color: #06a;*/
+	padding: 15px 10px 15px 10px;
+	width: 150px;
+	float: left;
+}
+.treenav2 { /* Optional border and scrollable container divs for the tree */
+	border-width: 1px;
+	border-style: solid;
+	border-color: #06a;
+	padding: 10px;
+	width: 150px;
+	height: 300px;
+	overflow: scroll;
+	float: left;
+}
+.h-line-bottom {
+	border-width: 1px 0 0 0;
+	border-style: solid;
+	border-color: #ff0000;
+	padding: 0;
+	margin: 0;
+	line-height: 0;
+	width: 100%;
+}
+img {
+	border: 0px;
+}
+/* Anchors */
+.lyrics_link {
+	font:400 10pt/12pt Verdana;
+}
+.lyrics_link a, .lyrics_link a:link, .lyrics_link a:visited {
+	color: #0033cc;
+	text-decoration: none;
+}
+.lyrics_link a:hover, .lyrics_link a:visited:hover {
+	color: #0033cc;
+	text-decoration: underline;
+}
+.back_top {float:right;}
+.back_top a,
+.back_top a:link,
+.back_top a:visited {
+	color: #0033cc;
+	text-decoration: none;
+}
+.back_top a:visited:hover {
+	color: #0033cc;
+	text-decoration: underline;
+}
+/* Embed Windows Media Player */
+.tbb {
+	background-color: #A9B8C2;
+	border: 0px #006699 solid;
+	margin: 0;
+	padding: 3px 0 3px 10px;
+}
+th {
+	height: 45px;
+	color: #444444;
+	border-color: #FFFFFF;
+	border-style: solid;
+	font-size: 10px;
+	background-color: #EAEAEA;
+	white-space: nowrap;
+	border-width: 1px 1px 0px 1px;
+	text-align: left;
+	text-indent: 5px;
+	vertical-align: middle;
+}
+.row {
+	background-color: #ffffff;
+	text-align: center;
+	white-space: nowrap;
+	margin: 0;
+	padding: 8px 2px 8px 0;
+}
+
+/* Background images for tables */
+.tbtl, .tbtr {width:22px;height:22px;}
+.tbtl {background: url(/bin/images/hymns/tb2_l.gif) no-repeat;}
+.tbtm {background: url(/bin/images/hymns/tb2_m.gif) repeat-x;height:22px;vertical-align:bottom;font:400 10pt/12pt Verdana;}
+.tbtr {background: url(/bin/images/hymns/tb2_r.gif) no-repeat;}
+
+/* Background images for tables */
+.tbll, .tblr {width:8px;height:4px;}
+.tbll {background: url(/bin/images/hymns/tb4_l.gif) no-repeat;}
+.tblm {background: url(/bin/images/hymns/tb4_m.gif) repeat-x;height:4px;}
+.tblr {background: url(/bin/images/hymns/tb4_r.gif) no-repeat;}
+
+/* Footer */
+#footer {font:400 10pt/12pt Verdana;border:0;padding: 0 0 20px 0;margin:0;width:100%;text-align:center;}
+#terms {width:750px;font-size:90%;}
+#terms p {margin:0;padding:0;}
+#footer a, #footer a:link, #footer a:visited {color:#0000ff;text-decoration:none;background-color:none;}
+#footer a:hover, #footer a:visited:hover {color:#FF8C00;text-decoration:none;background-color:none;}
