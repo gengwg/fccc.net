@@ -19,6 +19,6 @@ stm_aix("p2i3","p1i0",[0,"保　健","","",-1,-1,0,"?mod=daycare&view=health","_
 stm_aix("p2i4","p1i0",[0,"盒　飯","","",-1,-1,0,"?mod=daycare&view=dinnerbox","_self","","Dinner Boxes"],105,30);
 stm_ep();
 stm_aix("p0i5","p0i0",[0,"連　繫","","",-1,-1,0,"?mod=contact","_self","","Contact"],105,30);
-stm_aix("p0i6","p0i0",[0,"恩典棋","","",-1,-1,0,"http://www.china-chess.com","_blank","","China Chess"],105,30);
+//stm_aix("p0i6","p0i0",[0,"恩典棋","","",-1,-1,0,"http://www.china-chess.com","_blank","","China Chess"],105,30);
 stm_ep();
 stm_em();
