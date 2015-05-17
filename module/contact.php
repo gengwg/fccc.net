@@ -83,11 +83,11 @@ $portrait = $picture_path;
 			<span class="size2">Deacon Shenyu Chiao</span><br />
 			<span class="size2">shenyu@fccc.net</span>
 		</div></td>
-        <!------------ Deacon Shenyu Chiao ------------>
-        <td><img src="<?print $portrait?>shenyu_chiao.jpg"></td>
+        <!------------ Deacon WeChat ------------>
+        <td><img src="<?print $portrait?>wechat.jpg"></td>
         <td><div>
-            <span class="cname"TEST Test<font size="4">執事</font></span><br />
-            <span class="size2">this is test </span><br />
+            <span class="cname">福市华人教会<font size="4">微信</font></span><br />
+            <span class="size2">福市华人教会微信</span><br />
             <span class="size2">fccc@fccc.net</span>
         </div></td>
 	</tr>
