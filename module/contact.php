@@ -83,5 +83,12 @@ $portrait = $picture_path;
 			<span class="size2">Deacon Shenyu Chiao</span><br />
 			<span class="size2">shenyu@fccc.net</span>
 		</div></td>
+        <!------------ Deacon Shenyu Chiao ------------>
+        <td><img src="<?print $portrait?>shenyu_chiao.jpg"></td>
+        <td><div>
+            <span class="cname"TEST Test<font size="4">執事</font></span><br />
+            <span class="size2">this is test </span><br />
+            <span class="size2">fccc@fccc.net</span>
+        </div></td>
 	</tr>
 </table>
